@@ -1,0 +1,104 @@
+
+<link rel="stylesheet" href="/stylesheet/userreg.css">
+
+ <div class="container">
+      <div class="d-flex justify-content-center h-100">
+        <div class="card">
+          <div class="card-header">
+            <h3>Sign Up</h3>
+            <div class="d-flex justify-content-end social_icon">
+              <span><i class="fab fa-facebook-square"></i></span>
+              <span><i class="fab fa-google-plus-square"></i></span>
+              <span><i class="fab fa-twitter-square"></i></span>
+            </div>
+          </div>
+          <div class="card-body">
+            {{!-- enctype="application/x-www-form-urlencoded" --}}
+            <form action="/user/register" method="post" >
+            <input type="text" name="message" id="message" value="{{{message}}}" hidden>
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                </div>
+                <input id="userName" name="userName" type="text" class="form-control" placeholder="User name">
+                
+              </div>
+
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-at"></i></span>
+                </div>
+                <input id="email" type="text" name="email" class="form-control" placeholder="Email id">
+                
+              </div>
+
+             <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+                <input id="password" type="password" name="password" class="form-control" placeholder="Password">
+              </div>
+
+              <div class="input-group form-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-key"></i></span>
+                </div>
+                <input id="confirmPassword" type="password" name="confirmPassword" class="form-control" placeholder="Confirm Password">
+              </div>
+              <div class="row align-items-center remember">
+                <input type="checkbox">Remember Me
+              </div>
+              <div class="form-group">
+                <input type="submit" value="Sign Up" class="btn float-right login_btn">
+              </div>
+            </form>
+          </div>
+          <div class="card-footer">
+            <div class="d-flex justify-content-center links">
+              Do You have an account?<a href="/user/login">Sign In</a>
+            </div>
+            <div class="d-flex justify-content-center">
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  {{!-- form validation --}}
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('form').addEventListener('submit', formValidation);
+    });
+
+      const message=document.getElementById('message').value
+      if(message){
+      console.log(message)
+      alert(message)
+  }
+
+    function formValidation(e) {
+        e.preventDefault();
+
+        var userName = document.getElementById('userName').value.trim();
+        var email = document.getElementById('email').value.trim();
+        var password = document.getElementById('password').value.trim();
+        var confirmPassword = document.getElementById('confirmPassword').value.trim();
+
+        if (userName === "" || email === "" || password === "" || confirmPassword === "") {
+            alert("All fields are required!");
+            return false;
+        } else if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return false;
+        }
+
+        e.target.submit();
+        return true;
+    }
+</script>
+
+
+    
+    
